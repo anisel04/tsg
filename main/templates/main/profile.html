@@ -1,0 +1,58 @@
+{% extends 'main/base.html' %}
+{% block content %}
+
+<div class="profile-container">
+    <h2>Личный кабинет</h2>
+    <div class="profile-card">
+        {% if not user.is_superuser %}
+            <div class="profile-header">
+                <h3>Информация о пользователе</h3>
+                <a href="{% url 'edit_profile' %}" class="btn btn-primary">Редактировать</a>
+            </div>
+            <p><strong>Имя:</strong> {{ user.first_name|default:"Не указано" }}</p>
+            <p><strong>Фамилия:</strong> {{ user.surname|default:"Не указано" }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <p><strong>Квартира:</strong> {{ user.apartment_number|default:"Не указано" }}</p>
+            <p><strong>Телефон:</strong> {{ user.phone_number|default:"Не указано" }}</p>
+            <p><strong>Статус:</strong> Жилец</p>
+        {% else %}
+            <h3>Информация о пользователе</h3>
+            <p><strong>Логин:</strong> {{ user.username }}</p>
+            <p><strong>Статус:</strong> Администратор</p>
+        {% endif %}
+    </div>
+
+    {% if not user.is_superuser %}
+    <div class="profile-stats mt-4">
+        <h3>Статистика</h3>
+        <ul class="list-group">
+            <li class="list-group-item"><strong>Количество заявок:</strong> {{ requests_count }}</li>
+            <li class="list-group-item"><strong>Количество платежей:</strong> {{ payments_count }}</li>
+            <li class="list-group-item"><strong>Количество задолженностей:</strong> {{ debts_count }}</li>
+            <li class="list-group-item"><strong>Количество ответов на заявки:</strong> {{ responses_count }}</li>
+        </ul>
+    </div>
+    {% endif %}
+</div>
+
+<style>
+    .profile-container {
+        max-width: 800px;
+        margin: 30px auto;
+        padding: 20px;
+    }
+    .profile-card {
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        margin-bottom: 20px;
+    }
+    .profile-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+</style>
+{% endblock %}

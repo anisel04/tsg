@@ -1,0 +1,33 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<div class="form-container">
+    <h2 class="form-title">Отправить уведомление</h2>
+    <form method="post">
+        {% csrf_token %}
+
+        <!-- Тема -->
+        <div class="form-field">
+            <input type="text" name="title" placeholder="Тема" class="input-field">
+        </div>
+
+        <!-- Сообщение -->
+        <div class="form-field">
+            <textarea style="height:100px; width: 300px;" name="message" placeholder="Сообщение"
+                      class="input-field"></textarea>
+        </div>
+
+        <!-- Важное -->
+        <div class="form-field">
+            <input type="checkbox" name="is_important" class="input-field"
+                   {% if form.is_important.value %}checked{% endif %}>
+            <label for="is_important">Важное</label>
+        </div>
+
+        <button type="submit" class="btn-submit">Отправить</button>
+    </form>
+</div>
+
+{% endblock %}
+
+

@@ -1,0 +1,38 @@
+{% extends 'main/base.html' %}
+{% block content %}
+<div class="form-container">
+<h2>Отправить сообщение жильцу</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Добавить</button>
+</form>
+
+<script>
+    const userSelect = document.getElementById('user-select');
+    const requestSelect = document.getElementById('request-select');
+
+    userSelect.addEventListener('change', function () {
+        const userId = this.value;
+
+        // Очищаем текущий список заявок
+        requestSelect.innerHTML = '<option value="">-- Выберите заявку --</option>';
+
+        if (userId) {
+            fetch(`/get-user-requests/${userId}/`)
+                .then(response => response.json())
+                .then(data => {
+                    data.requests.forEach(request => {
+                        const option = document.createElement('option');
+                        option.value = request.id;
+                        option.textContent = request.description;
+                        requestSelect.appendChild(option);
+                    });
+                });
+        }
+    });
+</script>
+</div>
+{% endblock %}
+
+

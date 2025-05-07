@@ -1,0 +1,100 @@
+{% extends 'main/base.html' %}
+{% block content %}
+{% if user.is_authenticated %}
+<div class="dashboard-container">
+    <div class="content-section">
+        <h1>Добро пожаловать в систему ТСЖ!</h1>
+        <h3>Последние уведомления</h3>
+        {% if notifications %}
+            <ul class="notifications">
+                {% for notification in notifications %}
+                <li class="{% if notification.is_important %}important{% endif %}">
+                    <strong>{{ notification.title }}</strong>
+                    <p>{{ notification.message }}</p>
+                    <small>Дата: {{ notification.created_at|date:"d.m.Y H:i" }}</small>
+                </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Нет уведомлений на данный момент.</p>
+        {% endif %}
+    </div>
+
+    <div class="image-section">
+        <img src="/static/main/images/homem.jpg" alt="Дом ТСЖ" class="dashboard-image">
+    </div>
+</div>
+{% else %}
+<div class="auth-buttons">
+    <div class="button-group">
+        <div class="form-container">
+            <p>Для работы с системой выполните вход или зарегистрируйтесь:</p>
+            <a href="{% url 'login' %}" class="btn blue">Войти</a>
+            <a href="{% url 'register' %}" class="btn blue">Зарегистрироваться</a>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<style>
+    .dashboard-container {
+        display: flex;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .content-section {
+        flex: 1;
+        padding-right: 20px;
+        max-width: 50%;
+    }
+
+    .image-section {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        max-width: 50%;
+    }
+
+    .dashboard-image {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .notifications {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .notifications li {
+        background: #f9f9f9;
+        margin-bottom: 15px;
+        padding: 15px;
+        border-left: 4px solid #4a90e2;
+        border-radius: 0 4px 4px 0;
+    }
+
+    .notifications li.important {
+        border-left-color: #e74c3c;
+        background: #fff0f0;
+    }
+
+    .notifications strong {
+        color: #333;
+        font-size: 1.1em;
+    }
+
+    .notifications p {
+        margin: 8px 0;
+        color: #555;
+    }
+
+    .notifications small {
+        color: #999;
+        font-size: 0.8em;
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,151 @@
+{% extends 'main/base.html' %}
+{% block content %}
+<div class="notifications-container">
+
+    <h2 class="page-title", style="color: #0056b3;">Уведомления</h2>
+
+    <!-- Кнопка для сворачивания/разворачивания -->
+    <button class="toggle-filters-btn" onclick="toggleFilters()">
+        <span id="toggle-text">Показать фильтры</span>
+        <span id="toggle-icon">▶</span>
+    </button>
+
+    <!-- Форма фильтрации (изначально скрыта) -->
+    <div id="filters-container" class="collapsed">
+        <form method="get" class="filter-form">
+            <div class="filter-group">
+                <label for="importance">Важность:</label>
+                <select name="importance" id="importance">
+                    <option value="">Все</option>
+                    <option value="important" {% if request.GET.importance == "important" %}selected{% endif %}>Важные</option>
+                    <option value="not_important" {% if request.GET.importance == "not_important" %}selected{% endif %}>Неважные</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label for="date_n">Дата:</label>
+                <select name="date_n" id="date_n">
+                    <option value="">Все</option>
+                    <option value="new" {% if request.GET.date_n == "new" %}selected{% endif %}>Новые</option>
+                    <option value="old" {% if request.GET.date_n == "old" %}selected{% endif %}>Старые</option>
+                </select>
+            </div>
+
+            <div class="filter-buttons">
+                <button type="submit" class="filter-button">Применить фильтр</button>
+                <button type="button" class="clear-filters-button" onclick="clearFilters()">Очистить фильтры</button>
+            </div>
+        </form>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Список уведомлений -->
+    <ul class="notifications-list">
+        {% for notification in notifications %}
+        <li class="notification-item {% if notification.is_important %}important{% endif %}">
+            <h3 class="notification-title">{{ notification.title }}</h3>
+            {% if notification.is_important %}
+                <span class="important-label">Важное</span>
+            {% endif %}
+            <p class="notification-message">{{ notification.message }}</p>
+            <p class="notification-date">Дата: {{ notification.created_at }}</p>
+        </li>
+        {% empty %}
+        <li class="no-notifications">Нет уведомлений по выбранным критериям.</li>
+        {% endfor %}
+    </ul>
+</div>
+
+<style>
+    .toggle-filters-btn {
+        background: #f0f0f0;
+        border: 1px solid #ddd;
+        padding: 5px 10px;
+        cursor: pointer;
+        margin-bottom: 10px;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .toggle-filters-btn:hover {
+        background: #e0e0e0;
+    }
+
+    #filters-container {
+        overflow: hidden;
+        transition: max-height 0.3s ease, opacity 0.2s ease;
+        max-height: 250px; /* Достаточно для формы */
+        opacity: 1;
+    }
+
+    #filters-container.collapsed {
+        max-height: 0;
+        opacity: 0;
+        margin-bottom: 0;
+    }
+
+    .filter-buttons {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .filter-button {
+        background: #4CAF50;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .filter-button:hover {
+        background: #45a049;
+    }
+
+    .clear-filters-button {
+        background: #f44336;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .clear-filters-button:hover {
+        background: #d32f2f;
+    }
+</style>
+
+<script>
+    // Изначально фильтры скрыты (класс collapsed уже установлен в HTML)
+
+    function toggleFilters() {
+        const container = document.getElementById('filters-container');
+        const toggleText = document.getElementById('toggle-text');
+        const toggleIcon = document.getElementById('toggle-icon');
+
+        container.classList.toggle('collapsed');
+
+        if (container.classList.contains('collapsed')) {
+            toggleText.textContent = 'Показать фильтры';
+            toggleIcon.textContent = '▶';
+        } else {
+            toggleText.textContent = 'Скрыть фильтры';
+            toggleIcon.textContent = '▼';
+        }
+    }
+
+    function clearFilters() {
+        // Сбрасываем значения select'ов
+        document.getElementById('importance').value = '';
+        document.getElementById('date_n').value = '';
+
+        // Отправляем форму (применяем пустые фильтры)
+        document.querySelector('.filter-form').submit();
+    }
+</script>
+{% endblock %}

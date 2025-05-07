@@ -1,0 +1,20 @@
+{% extends 'main/base.html' %}
+{% block content %}
+<div class="form-container">
+    <h2>Создать заявку</h2>
+    <form method="post">
+            {% csrf_token %}
+            <div class="form-field">
+                <input type="text" name="title" placeholder="Тема" class="input-field">
+            </div>
+            <div class="form-field">
+            <textarea style="height:100px; width: 300px;" name="description" placeholder="Сообщение"
+                      class="input-field"></textarea>
+            </div>
+            <button type="submit" class="btn-submit">Отправить</button>
+    </form>
+</div>
+{% endblock %}
+
+
+

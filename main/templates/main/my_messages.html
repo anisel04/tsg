@@ -1,0 +1,60 @@
+{% extends 'main/base.html' %}
+{% block content %}
+<h2>Ваши сообщения</h2>
+<div class="table-container">
+    <table class="styled-table messages-table">
+        <colgroup>
+            <col style="width: 120px;">  <!-- Узкий столбец для даты -->
+            <col>                       <!-- Автоматическая ширина для заявки -->
+            <col>                       <!-- Автоматическая ширина для сообщения -->
+        </colgroup>
+        <thead>
+            <tr>
+                <th>Дата</th>
+                <th>Связанная заявка</th>
+                <th>Сообщение</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for message in messages %}
+            <tr class="{% if message.request and message.request.get_status_display == 'Новая' %}new-request{% elif message.request and message.request.get_status_display == 'В процессе' %}in-progress{% elif message.request and message.request.get_status_display == 'Завершена' %}completed-request{% endif %}">
+                <td class="date-cell">{{ message.created_at|date:"d.m.Y H:i" }}</td>
+                <td class="request-cell">
+                    {% if message.request %}
+                        {{ message.request.title }}
+                    {% else %}
+                        <span class="no-request">Нет</span>
+                    {% endif %}
+                </td>
+                <td class="message-cell">{{ message.text }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3" class="no-data">Сообщений пока нет.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<style>
+    .messages-table {
+        width: 100%;
+        table-layout: fixed;  /* Фиксированная ширина столбцов */
+    }
+
+    .date-cell {
+        width: 120px;  /* Фиксированная ширина для даты */
+    }
+
+    .request-cell,
+    .message-cell {
+        width: calc((100% - 120px)/2);  /* Оставшееся пространство пополам */
+    }
+
+    .no-request {
+        color: #999;
+        font-style: italic;
+    }
+</style>
+{% endblock %}

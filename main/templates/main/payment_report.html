@@ -1,0 +1,54 @@
+{% extends 'main/base.html' %}
+{% block content %}
+<style>
+    .report-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .table-container {
+        flex: 1;
+        min-width: 300px;
+    }
+
+    .chart-container {
+        flex: 1;
+        min-width: 300px;
+    }
+
+    /* Для мобильных экранов */
+    @media (max-width: 768px) {
+        .report-container {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+</style>
+<h1>Отчёт о платежах</h1>
+<div class="report-container">
+<div class="table-container">
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>Статус</th>
+                <th>Количество</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr class="request-row">
+            <td>Оплачено</td>
+            <td>{{ paid }} </td>
+        </tr>
+        <tr class="request-row">
+            <td> Ожидается</td>
+            <td>{{ unpaid }} </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="chart-container">
+<img src="data:image/png;base64,{{ chart }}" alt="График оплаты">
+</div>
+</div>
+{% endblock %}

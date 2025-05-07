@@ -1,0 +1,17 @@
+{% extends 'main/base.html' %}
+{% block content %}
+{% if user.is_staff %}
+<div class="form-container">
+    <h2>Добавить платеж</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Добавить</button>
+        </form>
+{% else %}
+    <h2>У Вас недостаточно прав!</h2>
+{% endif %}
+</div>
+{% endblock %}
+
+

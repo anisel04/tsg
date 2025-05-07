@@ -1,0 +1,829 @@
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form div {
+    margin: 10px;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"] {
+    width: 300px;
+    height: 40px;
+    text-align: center;
+}
+
+form button {
+    width: 150px;
+    height: 50px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #45a049;
+}
+
+/* Общие стили */
+body {
+    background: red;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+h2, h3, h4 {
+    color: #0056b3;
+}
+
+/* Навигация */
+nav {
+    background-color: #0056b3;
+    color: white;
+    padding: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s;
+}
+
+nav a:hover {
+    background-color: #004099;
+    border-radius: 5px;
+}
+
+nav div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+/* Контент */
+hr {
+    border: none;
+    height: 2px;
+    background-color: #ddd;
+    margin: 1rem 0;
+}
+
+main {
+    padding: 1rem;
+}
+
+/* Адаптивный дизайн */
+@media (max-width: 768px) {
+
+    nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav a {
+        display: block;
+        padding: 0.5rem 0;
+    }
+
+    nav div {
+        flex-direction: column;
+        gap: 0.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 14px;
+    }
+
+    nav {
+        padding: 0.5rem;
+    }
+
+    nav a {
+        font-size: 14px;
+    }
+}
+
+/* Контейнер таблицы */
+.table-container {
+    margin: 1rem 0;
+    overflow-x: auto; /* Для горизонтальной прокрутки на маленьких экранах */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Основной стиль таблицы */
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+    text-align: left;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Заголовок таблицы */
+.styled-table thead tr {
+    background-color: #0056b3;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.styled-table th {
+    text-align: center;
+}
+
+/* Строки таблицы */
+.styled-table tbody tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+}
+
+.styled-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Пустые данные */
+.no-data {
+    text-align: center;
+    color: #777;
+    font-style: italic;
+}
+
+/* Статусы */
+.status {
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 5px;
+    text-transform: uppercase;
+}
+
+.status.paid {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.status.unpaid {
+    background-color: #FF5722;
+    color: white;
+}
+
+/* Просроченные платежи */
+.styled-table .overdue td {
+    background-color: #FFEBEE;
+    color: #D32F2F;
+}
+
+/* Контейнер таблицы */
+.table-container {
+    margin: 1rem 0;
+    overflow-x: auto; /* Горизонтальная прокрутка для мобильных */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Основной стиль таблицы */
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+    text-align: left;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.styled-table thead tr {
+    background-color: #0056b3;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.styled-table tbody tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+}
+
+.styled-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Пустые данные */
+.no-data {
+    text-align: center;
+    color: #777;
+    font-style: italic;
+}
+
+/* Статусы заявок */
+.status {
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 5px;
+    text-transform: uppercase;
+}
+
+.status.new {
+    background-color: #2196F3;
+    color: white;
+}
+
+.status.in-progress {
+    background-color: #FFC107;
+    color: white;
+}
+
+.status.completed {
+    background-color: #4CAF50;
+    color: white;
+}
+
+/* Выделение строк по статусу */
+.new-request {
+    background-color: #E3F2FD;
+}
+
+.in-progress-request {
+    background-color: #FFF8E1;
+}
+
+.completed-request {
+    background-color: #E8F5E9;
+}
+
+/* Выделение строки при наведении */
+.request-row:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+/* Стиль для модального окна */
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.modal.hidden {
+    display: none;
+    opacity: 0;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal-content p {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.btn-confirm {
+    padding: 10px 20px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.btn-cancel {
+    padding: 10px 20px;
+    background-color: #7f8c8d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.btn-confirm:hover {
+    background-color: #c0392b;
+}
+
+.btn-cancel:hover {
+    background-color: #616a6b;
+}
+
+.styled-table td, .styled-table th {
+    padding: 0.8rem;
+    text-align: center;
+}
+
+
+/* Кнопка "Сохранить" */
+.btn-save {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 0.3rem 0.6rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-save:hover {
+    background-color: #45a049;
+}
+
+/* Кнопка "Удалить" */
+.btn-delete {
+
+    background-color: #FF5722;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 0.3rem 0.6rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-ask {
+
+    background-color: #00a8f3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 0.3rem 0.6rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-delete:hover {
+    background-color: #e64a19;
+}
+
+/* Выровненные кнопки */
+form .btn-save, .btn-delete {
+    height: 2rem;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* Стили кнопок в модальном окне */
+.btn-confirm {
+    background-color: #FF5722; /* Красный цвет для кнопки удаления */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-confirm:hover {
+    background-color: #e64a19;
+}
+
+.btn-cancel {
+    background-color: #9E9E9E; /* Серый цвет для кнопки отмены */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-cancel:hover {
+    background-color: #757575;
+}
+
+/* Выравнивание кнопок */
+form#delete-form {
+    display: flex;
+    justify-content: center;
+    gap: 1rem; /* Отступ между кнопками */
+}
+
+.form-container {
+    text-align: center;
+    background-color: #f9f9f9; /* Светлый фон формы */
+    padding: 20px 40px;
+    border-radius: 10px;
+    max-width: 700px;
+    margin: 50px auto; /* Центрирование формы */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Контейнер уведомлений */
+.notifications-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 5px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Заголовок страницы */
+.page-title {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Форма фильтрации */
+.filter-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 5px;
+    margin-bottom: 20px;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-group label {
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.filter-group select {
+    padding: 8px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.filter-button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.filter-button:hover {
+    background-color: #45a049;
+}
+
+/* Разделитель */
+.divider {
+    margin: 20px 0;
+    border: none;
+    border-top: 1px solid #ddd;
+}
+
+/* Список уведомлений */
+.notifications-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.notification-item {
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.notification-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Важное уведомление */
+.notification-item.important {
+    border-left: 5px solid #e74c3c;
+}
+
+.notification-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0 0 10px;
+}
+
+.important-label {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #e74c3c;
+    color: #fff;
+    border-radius: 3px;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.notification-message {
+    font-size: 1rem;
+    margin: 10px 0;
+    color: #555;
+}
+
+.notification-date {
+    font-size: 0.85rem;
+    color: #777;
+}
+
+/* Сообщение об отсутствии уведомлений */
+.no-notifications {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #999;
+}
+
+.btn-reply {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    margin-top: 0.5rem;
+}
+
+.btn-reply:hover {
+    background-color: #0056b3;
+}
+
+.profile-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.profile-card {
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #fff;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.profile-card h3 {
+    margin-top: 0;
+    color: #333;
+}
+
+.profile-stats ul {
+    list-style: none;
+    padding: 0;
+}
+
+.profile-stats li {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.profile-stats li strong {
+    color: #555;
+}
+
+.notifications {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.notifications li {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.notifications li.important {
+    border-color: #ff4d4d;
+    background-color: #ffe6e6;
+}
+
+.notifications li strong {
+    display: block;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.notifications li small {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.auth-container {
+    width: 300px;
+    margin: 0 auto; /* Центрирует по горизонтали */
+    margin-top: 15vh; /* Центрирует по вертикали, корректируйте по необходимости */
+    padding: 2rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.auth-container p {
+    margin-bottom: 2rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #333;
+}
+
+.btn {
+    display: block;
+    width: 100%; /* Кнопки одинаковой ширины */
+    max-width: 240px;
+    margin: 0 auto 1rem; /* Центрирует и добавляет отступ снизу */
+    padding: 0.8rem 0;
+    font-size: 1rem;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    transition: background-color 0.3s ease;
+}
+
+.btn:last-child {
+    margin-bottom: 0; /* Убирает отступ для последней кнопки */
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.report-container {
+    display: flex; /* Включаем Flexbox для горизонтального разделения */
+
+    align-items: flex-start; /* Выравнивание по верху */
+    gap: 2rem; /* Промежуток между таблицей и графиком */
+    margin-top: 1.5rem;
+}
+
+.chart-container {
+    flex: 1; /* Занимает оставшуюся половину ширины */
+    max-width: 70%;
+    text-align: center; /* Центровка содержимого */
+}
+
+.chart-container img {
+    width: 100%; /* График растягивается по контейнеру */
+    max-width: 500px; /* Ограничение по ширине */
+    height: auto;
+    border: 1px solid #ddd; /* Лёгкая рамка */
+    border-radius: 8px; /* Скруглённые углы */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Лёгкая тень */
+}
+
+.debts-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.debts-container {
+    width: 80%;
+    margin: 0 auto;
+    max-width: 900px;
+}
+
+.debts-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.debt-item {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.debt-description {
+    font-size: 18px;
+}
+
+.status-paid {
+    color: green;
+    font-weight: bold;
+}
+
+.status-unpaid {
+    color: red;
+    font-weight: bold;
+}
+
+.no-debts-message {
+    text-align: center;
+    font-size: 18px;
+    color: #666;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.messages-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.messages-container {
+    width: 80%;
+    margin: 0 auto;
+    max-width: 900px;
+}
+
+.messages-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.message-item {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.message-text {
+    margin-top: 10px;
+}
+
+.no-messages-message {
+    text-align: center;
+    font-size: 18px;
+    color: #666;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+
+
+

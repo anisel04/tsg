@@ -1,0 +1,36 @@
+{% extends 'main/base.html' %}
+{% block content %}
+<h2>Мои заявки</h2>
+
+<div class="table-container">
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>Название</th>
+                <th>Описание</th>
+                <th>Статус</th>
+                <th>Создана</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for request in requests %}
+            <tr class="{% if request.get_status_display == 'Новая' %}new-request{% elif request.get_status_display == 'В процессе' %}in-progress{% elif request.get_status_display == 'Завершена' %}completed-request{% endif %}">
+                <td>{{ request.title }}</td>
+                <td>{{ request.description }}</td>
+                <td>
+                    <span class="status {% if request.get_status_display == 'Новая' %}new{% elif request.get_status_display == 'В процессе' %}in-progress{% elif request.get_status_display == 'Завершена' %}completed{% endif %}">
+                        {{ request.get_status_display }}
+                    </span>
+                </td>
+                <td>{{ request.created_at|date:"d.m.Y H:i" }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4" class="no-data">У вас нет заявок.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
